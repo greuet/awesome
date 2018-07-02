@@ -661,7 +661,7 @@ awful.rules.rules = {
     { rule = { class = "smplayer" },
       properties = { tag = "  ", switchtotag = true} },
     -- title bar disabled for these clients
-    { rule_any = { class = {"Emacs", "xfce4-terminal", "xterm"} },
+    { rule_any = { class = {"Emacs", "xfce4-terminal", "Xfce4-terminal", "xterm"} },
       properties = { titlebars_enabled = false} },
     -- floating firefox history
     { rule_any = { name = {"Bibliothèque"} },
