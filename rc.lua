@@ -649,13 +649,25 @@ awful.rules.rules = {
     { rule_any = { type = { "dialog", "normal" } },
       properties = { titlebars_enabled = true } },
 
-    -- Set Firefox to always map on the first tag on screen 1.
+    -- Rules to run apps on specific tags and go to this tag
     { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = awful.util.tagnames[1] } },
+      properties = { tag = "  ", switchtotag = true} },
+    { rule = { class = "Emacs" },
+      properties = { tag = "  ", switchtotag = true }, },
+    { rule_any = { class = {"Gimp", "Darktable"} },
+      properties = { tag = " ✎ ", switchtotag = true} },
+    { rule = { class = "Audacious" },
+      properties = { tag = " ♫ ", switchtotag = true} },
+    { rule = { class = "smplayer" },
+      properties = { tag = "  ", switchtotag = true} },
+    -- title bar disabled for these clients
+    { rule_any = { class = {"Emacs", "xfce4-terminal", "xterm"} },
+      properties = { titlebars_enabled = false} },
+    -- floating firefox history
+    { rule_any = { name = {"Bibliothèque"} },
+      properties = { floating = true } },
+    }
 
-    { rule = { class = "Gimp", role = "gimp-image-window" },
-          properties = { maximized = true } },
-}
 -- }}}
 
 -- {{{ Signals
