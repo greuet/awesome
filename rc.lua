@@ -22,6 +22,16 @@ local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 -- }}}
 
+-- to get french clock
+os.setlocale("fr_FR.UTF-8")
+
+
+-- Define global folders
+awesome_paths = {}
+awesome_paths.icon_dir = os.getenv ("HOME") .. ".icons/Flat Remix/apps/scalable/"
+awesome_paths.iconapps_dir = { awesome_paths.icon_dir }
+
+
 -- {{{ Error handling
 if awesome.startup_errors then
     naughty.notify({ preset = naughty.config.presets.critical,
