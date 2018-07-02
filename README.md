@@ -3,7 +3,7 @@ Custom theme and configuration files for Awesome WM
 
 Theme files and rc.lua are based on Luca CPZ's work from [awesome-copycats](https://github.com/lcpz/awesome-copycats.git)
 
-License: BY-NC-SA_
+License: [BY-NC-SA](http://creativecommons.org/licenses/by-nc-sa/4.0)
 
 * Configuration file is based on [awesome-copycats](https://github.com/lcpz/awesome-copycats.git)
 * Awesome theme is based on [awesome-copycats](https://github.com/lcpz/awesome-copycats.git):
