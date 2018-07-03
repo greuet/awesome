@@ -510,6 +510,8 @@ function theme.at_screen_connect(s)
             arrow("#CB755B", "#8DAA9A"),
             wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
             arrow("#8DAA9A", "#C0C0A2"),
+            -- wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
+            -- arrow("#8DAA9A", "#C0C0A2"),
             wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#C0C0A2"),
             arrow("#C0C0A2", "#777E76"),
             wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
