@@ -170,11 +170,38 @@ local mail = lain.widget.imap({
 })
 --]]
 
--- ALSA volume
+-- ALSA volume bar
+local volicon = wibox.widget.imagebox(theme.widget_vol)
 theme.volume = lain.widget.alsabar({
-    --togglechannel = "IEC958,3",
-    notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
+    width = 67,
+    notification_preset = { font = theme.font }
 })
+theme.volume.tooltip.wibox.fg = theme.fg_focus
+theme.volume.tooltip.wibox.font = theme.font
+theme.volume.bar:buttons(my_table.join (
+          awful.button({}, 1, function()
+            awful.spawn.with_shell(string.format("%s -e alsamixer", terminal))
+          end),
+          awful.button({}, 2, function()
+            awful.spawn(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 3, function()
+            awful.spawn(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 4, function()
+            awful.spawn(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 5, function()
+            awful.spawn(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end)
+))
+local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.shape.rectangle)
+local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
+
 
 -- MPD
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
@@ -481,7 +508,7 @@ function theme.at_screen_connect(s)
             arrow("#4B3B51", "#CB755B"),
             wibox.container.background(wibox.container.margin(wibox.widget { fsicon, theme.fs.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#CB755B"),
             arrow("#CB755B", "#8DAA9A"),
-            wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
+            wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
             arrow("#8DAA9A", "#C0C0A2"),
             wibox.container.background(wibox.container.margin(wibox.widget { nil, neticon, net.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#C0C0A2"),
             arrow("#C0C0A2", "#777E76"),
