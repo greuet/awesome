@@ -642,7 +642,7 @@ awful.rules.rules = {
       properties = { tag = "  ", switchtotag = true} },
     { rule = { class = "Emacs" },
       properties = { tag = "  ", switchtotag = true }, },
-    { rule_any = { class = {"Gimp", "Darktable"} },
+    { rule_any = { class = {"Gimp", "Darktable", "Inkscape"} },
       properties = { tag = " ✎ ", switchtotag = true} },
     { rule = { class = "Audacious" },
       properties = { tag = " ♫ ", switchtotag = true} },
