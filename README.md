@@ -15,7 +15,7 @@ License: [BY-NC-SA](http://creativecommons.org/licenses/by-nc-sa/4.0)
 
 
 Tested on Debian Buster. To work without modification, the following are required:
-* Unagi as compositing manager
+* Compton as compositing manager
 * Xfce4-terminal
 * unclutter firefox scrot mpd mpc dmenu xsel xlock (same as awesome-copycats)
 * Software in launchbar are: Xfce4-terminal, Firefox, Emacs, Thunar, Gimp, Darktable, Audacious
