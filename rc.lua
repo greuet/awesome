@@ -649,8 +649,8 @@ awful.rules.rules = {
     -- title bar disabled for these clients
     { rule_any = { class = {"Emacs", "xfce4-terminal", "Xfce4-terminal", "xterm"} },
       properties = { titlebars_enabled = false} },
-    -- floating firefox history
-    { rule_any = { name = {"Bibliothèque"} },
+    -- floating firefox history, calculator
+    { rule_any = { name = {"Bibliothèque", "Calculatrice"} },
       properties = { floating = true } },
     }
 
