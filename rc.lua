@@ -196,11 +196,14 @@ beautiful.init(theme_path)
 
 -- {{{ Menu
 local myawesomemenu = {
-    { "hotkeys", function() return false, hotkeys_popup.show_help end },
-    { "manual", terminal .. " -e man awesome" },
-    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-    { "restart", awesome.restart },
-    { "quit", function() awesome.quit() end }
+    { "Hotkeys", function() return false, hotkeys_popup.show_help end },
+    { "Manual", terminal .. " -e man awesome" },
+    { "Edit Config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+    { "Restart Awesome", awesome.restart },
+    { "Quit Awesome", function() awesome.quit() end },
+    { "_________________ "},
+    { "Reboot Computer", awful.spawn.with_shell ("sudo reboot")},
+    { "Shutdown Computer", awful.spawn.with_shell ("sudo poweroff")}
 }
 awful.util.mymainmenu = freedesktop.menu.build({
     icon_size = beautiful.menu_height or 16,
