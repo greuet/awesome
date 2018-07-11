@@ -19,4 +19,5 @@ Tested on Debian Buster. To work without modification, the following are require
 * Xfce4-terminal
 * unclutter firefox scrot mpd mpc dmenu xsel xlock (same as awesome-copycats)
 * Software in launchbar are: Xfce4-terminal, Firefox, Emacs, Thunar, Gimp, Darktable, Audacious
+* To use reboot/shutdown in menu with sudo without password, edit your `/etc/sudoers` file with `visudo` command and add the following line: `<your username>  ALL=(ALL) ALL,NOPASSWD: /sbin/reboot,/sbin/poweroff`
 
