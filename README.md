@@ -21,3 +21,6 @@ Tested on Debian Buster. To work without modification, the following are require
 * Software in launchbar are: Xfce4-terminal, Firefox, Emacs, Thunar, Gimp, Darktable, Audacious
 * To use reboot/shutdown in menu with sudo without password, edit your `/etc/sudoers` file with `visudo` command and add the following line: `<your username>  ALL=(ALL) ALL,NOPASSWD: /sbin/reboot,/sbin/poweroff`
 
+## Screenshots
+![screenshot menu](/screenshots/screenshot_menu.jpg?raw=true "Background, widgets and menu")
+![screenshot Emacs + Terminal + Thunar + calendar widget](/screenshots/screenshot_windows.jpg?raw=true "Emacs, terminal, thunar and calendar widget popup")
