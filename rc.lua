@@ -201,9 +201,6 @@ local myawesomemenu = {
     { "Edit Config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
     { "Restart Awesome", awesome.restart },
     { "Quit Awesome", function() awesome.quit() end },
-    { "_________________ "},
-    { "Reboot Computer", awful.spawn.with_shell ("sudo reboot")},
-    { "Shutdown Computer", awful.spawn.with_shell ("sudo poweroff")}
 }
 awful.util.mymainmenu = freedesktop.menu.build({
     icon_size = beautiful.menu_height or 16,
@@ -213,6 +210,9 @@ awful.util.mymainmenu = freedesktop.menu.build({
     },
     after = {
         { "Open terminal", terminal },
+        { "-----------------"},
+        { "Reboot Computer", terminal .. " -e sudo reboot" },
+        { "Shutdown Computer", terminal .. " -e sudo poweroff" },
         -- other triads can be put here
     }
 })
