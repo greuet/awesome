@@ -747,4 +747,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- run at startup
 awful.spawn.with_shell ("compton -b")
+awful.spawn.with_shell ("xrandr --output VGA-1-1 --auto --right-of DVI-I-1")
 -- }}}
