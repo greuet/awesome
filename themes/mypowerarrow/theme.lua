@@ -14,7 +14,7 @@ local os, math, string = os, math, string
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. 
+theme.dir                                       = os.getenv("HOME") ..
    "/.config/awesome/themes/mypowerarrow"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 theme.font                                      = "Terminus 10"
@@ -397,7 +397,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    local names = { "  ", "  ", "  ", " ✎ ", " ♫ ", 
+    local names = { "  ", "  ", "  ", " ✎ ", " ♫ ",
                     "  ", " [+] "}
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
     local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile, l.floating, 
