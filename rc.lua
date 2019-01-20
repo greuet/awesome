@@ -17,7 +17,8 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local lain          = require("lain")
 --local menubar       = require("menubar")
-local freedesktop   = require("freedesktop")
+-- local freedesktop   = require("freedesktop")
+local debian = require("debian.menu")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 local my_table      = awful.util.table or gears.table -- 4.{0,1} compatibility
 -- }}}
@@ -202,20 +203,37 @@ local myawesomemenu = {
     { "Restart Awesome", awesome.restart },
     { "Quit Awesome", function() awesome.quit() end },
 }
-awful.util.mymainmenu = freedesktop.menu.build({
-    icon_size = beautiful.menu_height or 16,
-    before = {
-        { "Awesome", myawesomemenu, beautiful.awesome_icon },
-        -- other triads can be put here
-    },
-    after = {
-        { "Open terminal", terminal },
-        { "-----------------"},
-        { "Reboot Computer", terminal .. " -e sudo reboot" },
-        { "Shutdown Computer", terminal .. " -e sudo poweroff" },
-        -- other triads can be put here
-    }
+
+local menu_awesome = {"awesome", myawesomemenu, beautiful.awesome_icon }
+-- menu without freedesktop
+awful.util.mymainmenu = awful.menu({
+      items = {
+         menu_awesome,
+         {"Debian", debian.menu.Debian_menu.Debian },
+         { "Open terminal", terminal },
+         { "-----------------"},
+         { "Reboot Computer", terminal .. " -e sudo reboot" },
+         { "Shutdown Computer", terminal .. " -e sudo poweroff" },
+      }
 })
+
+-- freedesktop menu (can slow startup)
+-- awful.util.mymainmenu = freedesktop.menu.build({
+--     icon_size = beautiful.menu_height or 16,
+--     before = {
+--         { "Awesome", myawesomemenu, beautiful.awesome_icon },
+--         -- other triads can be put here
+--     },
+--     after = {
+--         { "Open terminal", terminal },
+--         { "-----------------"},
+--         { "Reboot Computer", terminal .. " -e sudo reboot" },
+--         { "Shutdown Computer", terminal .. " -e sudo poweroff" },
+--         -- other triads can be put here
+--     }
+-- })
+
+
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
