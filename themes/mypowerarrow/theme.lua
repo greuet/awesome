@@ -400,8 +400,15 @@ function theme.at_screen_connect(s)
     local names = { "  ", "  ", "  ", " ✎ ", " ♫ ",
                     "  ", " [+] "}
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
-    local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile, l.floating, 
-                      l.floating, l.tile }
+
+    local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile, l.floating,
+                   l.floating, l.tile }
+    if s.index == 2 then
+       -- second screen is not wide, tile bottom
+       layouts = { l.tile.bottom, l.tile.bottom, l.tile.bottom,
+                   l.floating, l.tile.bottom, l.floating,
+                   l.floating, l.tile.bottom }
+    end
     awful.tag(names, s, layouts)
 
     -- Create a promptbox for each screen
