@@ -1,4 +1,4 @@
-# awesome
+# awesomen
 Custom theme and configuration files for Awesome WM
 
 Theme files and rc.lua are based on Luca CPZ's work from [awesome-copycats](https://github.com/lcpz/awesome-copycats.git)
@@ -24,3 +24,16 @@ Tested on Debian Buster. To work without modification, the following are require
 ## Screenshots
 ![screenshot menu](/screenshots/screenshot_menu.jpg?raw=true "Background, widgets and menu")
 ![screenshot Emacs + Terminal + Thunar + calendar widget](/screenshots/screenshot_windows.jpg?raw=true "Emacs, terminal, thunar and calendar widget popup")
+
+
+## Remarks
+To make the volume bar work, I had to modify /etc/modprobe.d/alsa-base.conf to replace its content with the two following line:
+```
+options snd_mia index=0
+options snd_hda_intel index=1
+```
+and /etc/asound.conf to set:
+```
+default.pcm.card 1
+default.ctl.card 1
+```
