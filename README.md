@@ -18,9 +18,22 @@ Tested on Debian Buster. To work without modification, the following are require
 * Compton as compositing manager
 * Xfce4-terminal
 * unclutter firefox scrot mpd mpc dmenu xsel xlock (same as awesome-copycats)
-* Software in launchbar are: Xfce4-terminal, Firefox, Emacs, Thunar, Gimp, Darktable, Audacious
+* Software in launchbar are: Xfce4-terminal, Firefox, Emacs, PCManFM, Gimp, Darktable, Audacious
 * To use reboot/shutdown in menu with sudo without password, edit your `/etc/sudoers` file with `visudo` command and add the following line: `<your username>  ALL=(ALL) ALL,NOPASSWD: /sbin/reboot,/sbin/poweroff`
 
 ## Screenshots
 ![screenshot menu](/screenshots/screenshot_menu.jpg?raw=true "Background, widgets and menu")
-![screenshot Emacs + Terminal + Thunar + calendar widget](/screenshots/screenshot_windows.jpg?raw=true "Emacs, terminal, thunar and calendar widget popup")
+![screenshot Emacs + Terminal + PCManFM + calendar widget](/screenshots/screenshot_windows.jpg?raw=true "Emacs, terminal, PCManFM and calendar widget popup")
+
+
+## Remarks
+To make the volume bar work, I had to modify /etc/modprobe.d/alsa-base.conf to replace its content with the two following line:
+```
+options snd_mia index=0
+options snd_hda_intel index=1
+```
+and /etc/asound.conf to set:
+```
+default.pcm.card 1
+default.ctl.card 1
+```

@@ -353,7 +353,7 @@ terminal_button:buttons(awful.util.table.join(
 
 local thunar_button = awful.widget.button({ image = theme.thunar })
 thunar_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("thunar") end)
+  awful.button({ }, 1, function () awful.util.spawn("pcmanfm") end)
 ))
 
 
