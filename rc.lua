@@ -772,4 +772,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- run at startup
 awful.spawn.with_shell ("compton -b")
 awful.spawn.with_shell ("ulauncher --hide-window")
+awful.spawn.with_shell ("nm-applet")
+awful.spawn.with_shell ("xfce4-power-manager")
 -- }}}
