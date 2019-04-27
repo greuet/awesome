@@ -665,8 +665,14 @@ awful.rules.rules = {
     { rule = { class = "smplayer" },
       properties = { tag = "  ", switchtotag = true} },
     -- title bar disabled for these clients
-    { rule_any = { class = {"Emacs", "xfce4-terminal", "Xfce4-terminal", "xterm"} },
+    { rule_any = { class = {"Emacs", "xfce4-terminal", "Xfce4-terminal", "xterm", "Ulauncher", "ulauncher"} },
       properties = { titlebars_enabled = false} },
+    { rule_any = { class = {"Ulauncher", "ulauncher"} },
+      properties = { floating = true },
+      callback = function (c)
+         awful.placement.centered(c,nil)
+      end
+    },
     -- floating firefox history, calculator
     { rule_any = { name = {"Bibliothèque", "Calculatrice"} },
       properties = { floating = true } },
@@ -750,8 +756,8 @@ end)
 
 -- No border for maximized clients
 function border_adjust(c)
-    if c.maximized then -- no borders if only 1 client visible
-        c.border_width = 0
+    if c.maximized or c.class == "Ulauncher" or c.class == "ulauncher" then -- no borders if only 1 client visible
+       c.border_width = 0
     elseif #awful.screen.focused().clients > 1 then
         c.border_width = beautiful.border_width
         c.border_color = beautiful.border_focus
@@ -765,4 +771,5 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- run at startup
 awful.spawn.with_shell ("compton -b")
+awful.spawn.with_shell ("ulauncher --hide-window")
 -- }}}
