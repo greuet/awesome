@@ -37,3 +37,5 @@ and /etc/asound.conf to set:
 default.pcm.card 1
 default.ctl.card 1
 ```
+
+Icons in the tags list are utf8 characters: , , , ✎, ♫, 
