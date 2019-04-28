@@ -445,7 +445,7 @@ globalkeys = my_table.join(
         {description = "volume down", group = "hotkeys"}),
     awful.key({}, "XF86AudioMute",
         function ()
-            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            os.execute(string.format("amixer -q -D pulse set %s 1+ toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end,
         {description = "toggle mute", group = "hotkeys"}),
