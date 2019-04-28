@@ -212,6 +212,7 @@ awful.util.mymainmenu = awful.menu({
          {"Debian", debian.menu.Debian_menu.Debian },
          { "Open terminal", terminal },
          { "-----------------"},
+         { "Suspend", terminal .. " -e systemctl suspend" },
          { "Reboot Computer", terminal .. " -e sudo reboot" },
          { "Shutdown Computer", terminal .. " -e sudo poweroff" },
       }
