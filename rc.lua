@@ -775,4 +775,5 @@ awful.spawn.with_shell ("compton -b")
 awful.spawn.with_shell ("ulauncher --hide-window")
 awful.spawn.with_shell ("nm-applet")
 awful.spawn.with_shell ("xfce4-power-manager")
+awful.spawn.with_shell ("xcalib /home/aurelien/.colorprofiles/ColorProfile.icc")
 -- }}}
