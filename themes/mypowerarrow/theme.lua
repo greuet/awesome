@@ -193,7 +193,7 @@ theme.volume.bar:buttons(my_table.join (
             theme.volume.update()
           end),
           awful.button({}, 3, function()
-            awful.spawn(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
+            awful.spawn(string.format("%s -D pulse set %s 1+ toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
             theme.volume.update()
           end),
           awful.button({}, 4, function()
