@@ -126,7 +126,7 @@ mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:togg
 local markup = lain.util.markup
 local separators = lain.util.separators
 
-local mytextclock = wibox.widget.textclock('<span color="#FFFFFF" font="Terminus 10"> %d/%m - %Hh%M </span>')
+local mytextclock = wibox.widget.textclock('<span color="#dfd2e3" font="Terminus 10"> %d/%m | %Hh%M </span>')
 
 -- Calendar
 -- load the widget code
@@ -499,9 +499,9 @@ function theme.at_screen_connect(s)
             arrow("alpha", "#8DAA9A"),
             -- arrow("#CB755B", "#8DAA9A"),
             wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
-            arrow("#8DAA9A", "#777E76"),
-            wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
-            arrow("#777E76", "#222222"),
+            arrow("#8DAA9A", "#493a4f"),
+            wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#493a4f"),
+            arrow("#493a4f", "#222222"),
             --]]
             wibox.widget.systray(),
             s.mylayoutbox,
