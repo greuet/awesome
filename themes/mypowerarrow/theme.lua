@@ -397,11 +397,9 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    local names = { "  ", "  ", "  ", " ✎ ", " ♫ ", 
-                    "  ", " [+] "}
+    local names = { "🌏", "ℇ", "📂", "✎", "🎶"}
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
-    local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile, l.floating, 
-                      l.floating, l.tile }
+    local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile}
     awful.tag(names, s, layouts)
 
     -- Create a promptbox for each screen
