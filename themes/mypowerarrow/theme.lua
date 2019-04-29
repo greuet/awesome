@@ -458,22 +458,13 @@ function theme.at_screen_connect(s)
                                       { terminal_button,
                                         firefox_button,
                                         emacs_button,
-                                        gimp_button,
-                                        darktable_button,
                                         audacious_button,
                                         layout = wibox.layout.align.horizontal },
                                       5, 3), theme.mybuttons_bg .. "90"),
             wibox.container.background(
                wibox.container.margin(wibox.widget 
                                       { thunar_button,
-                                        gimp_button,
-                                        darktable_button,
                                         audacious_button,
-                                        layout = wibox.layout.align.horizontal },
-                                      0, 3), theme.mybuttons_bg .. "90"),
-            wibox.container.background(
-               wibox.container.margin(wibox.widget 
-                                      { audacious_button,
                                         layout = wibox.layout.align.horizontal },
                                       0, 3), theme.mybuttons_bg .. "90"),
             arrow_right(theme.mybuttons_bg .. "90", "alpha"),
