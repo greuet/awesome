@@ -29,7 +29,7 @@ os.setlocale("fr_FR.UTF-8")
 
 -- Define global folders
 awesome_paths = {}
-awesome_paths.icon_dir = os.getenv ("HOME") .. ".icons/Flat Remix/apps/scalable/"
+awesome_paths.icon_dir = os.getenv ("HOME") .. ".icons/Flat-Remix-Green-Dark/apps/scalable/"
 awesome_paths.iconapps_dir = { awesome_paths.icon_dir }
 
 
