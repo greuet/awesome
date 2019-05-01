@@ -491,49 +491,49 @@ function theme.at_screen_connect(s)
              wibox.container.margin(wibox.widget
                                     { s.mytaglist,
                                       layout = wibox.layout.align.horizontal },
-                                    0, 3), theme.taglist_bg_normal .. "50"),
+                                    0, 0), theme.taglist_bg_normal .. "50"),
           arrow_right(theme.taglist_bg_normal .. "50", "#404040" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { terminal_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#404040" .. "F0"),
+                                    2, 1), "#404040" .. "F0"),
           arrow_right("#404040" .. "F0", "#505050" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { firefox_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#505050" .. "F0"),
+                                    2, 1), "#505050" .. "F0"),
           arrow_right("#505050" .. "F0", "#606060" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { thunar_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#606060" .. "F0"),
+                                    2, 1), "#606060" .. "F0"),
           arrow_right("#606060" .. "F0", "#707070" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { emacs_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#707070" .. "F0"),
+                                    2, 1), "#707070" .. "F0"),
           arrow_right("#707070" .. "F0", "#808080" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { gimp_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#808080" .. "F0"),
+                                    2, 1), "#808080" .. "F0"),
           arrow_right("#808080" .. "F0", "#909090" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { darktable_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#909090" .. "F0"),
+                                    2, 1), "#909090" .. "F0"),
           arrow_right("#909090" .. "F0", "#A0A0A0" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { audacious_button,
                                       layout = wibox.layout.align.horizontal },
-                                    5, 3), "#A0A0A0" .. "F0"),
+                                    2, 1), "#A0A0A0" .. "F0"),
           arrow_right("#A0A0A0" .. "F0", "alpha"),
           s.mypromptbox,
           spr,
