@@ -424,14 +424,14 @@ function theme.at_screen_connect(s)
        right_widgets = {
           layout = wibox.layout.fixed.horizontal,
           -- using separators
-          arrow("alpha", "#CB755B"),
-          wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, 3, 4), "#CB755B"),
-          arrow("#CB755B", "#4B3B51"),
-          wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 2, 3), "#4B3B51"),
-          arrow("#4B3B51", "#8DAA9A"),
-          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
-          arrow("#8DAA9A", "#777E76"),
-          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
+          arrow("alpha", "#CB755B" .. "B0"),
+          wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, 3, 4), "#CB755B" .. "B0"),
+          arrow("#CB755B" .. "B0", "#4B3B51" .. "B0"),
+          wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 2, 3), "#4B3B51" .. "B0"),
+          arrow("#4B3B51" .. "B0", "#8DAA9A" .. "B0"),
+          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A" .. "B0"),
+          arrow("#8DAA9A" .. "B0", "#777E76" .. "B0"),
+          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76" .. "B0"),
           --]],
           wibox.widget.systray(),
           s.mylayoutbox
@@ -440,10 +440,10 @@ function theme.at_screen_connect(s)
        right_widgets = {
           layout = wibox.layout.fixed.horizontal,
           -- using separators
-          arrow("alpha", "#8DAA9A"),
-          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
-          arrow("#8DAA9A", "#777E76"),
-          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
+          arrow("alpha", "#8DAA9A" .. "B0"),
+          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A" .. "B0"),
+          arrow("#8DAA9A" .. "B0", "#777E76" .. "B0"),
+          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76" .. "B0"),
           --]]
           wibox.widget.systray(),
           s.mylayoutbox
