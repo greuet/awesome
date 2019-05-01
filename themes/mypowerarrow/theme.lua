@@ -39,7 +39,6 @@ theme.border_marked                             = "#CC9393"
 theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
-theme.mybuttons_bg                              = "#FFAF5F"
 theme.menu_bg_normal                            = "#222222"
 theme.menu_bg_focus                             = "#ce5666"
 theme.menu_height                               = 24
@@ -411,8 +410,6 @@ function theme.at_screen_connect(s)
     end
     awful.tag(names, s, layouts)
 
-    -- Create a promptbox for each screen
-    s.mypromptbox = awful.widget.prompt()
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
@@ -421,6 +418,40 @@ function theme.at_screen_connect(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
+    local right_widgets
+    if s.index == 1 then
+       right_widgets = {
+          layout = wibox.layout.fixed.horizontal,
+          -- using separators
+          arrow("alpha", "#CB755B"),
+          wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, 3, 4), "#CB755B"),
+          arrow("#CB755B", "#4B3B51"),
+          wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 2, 3), "#4B3B51"),
+          arrow("#4B3B51", "#8DAA9A"),
+          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
+          arrow("#8DAA9A", "#777E76"),
+          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
+          --]],
+          wibox.widget.systray(),
+          s.mylayoutbox
+       }
+    else
+       right_widgets = {
+          layout = wibox.layout.fixed.horizontal,
+          -- using separators
+          arrow("alpha", "#8DAA9A"),
+          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
+          arrow("#8DAA9A", "#777E76"),
+          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
+          --]]
+          wibox.widget.systray(),
+          s.mylayoutbox
+       }
+    end
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all,
                                        awful.util.taglist_buttons)
@@ -447,133 +478,63 @@ function theme.at_screen_connect(s)
                               bg = theme.bg_normal .. "60", fg = theme.fg_normal .. "99"})
 
     -- Add widgets to the wibox
-    if s.index == 1 then
-       s.mywibox:setup {
-          layout = wibox.layout.align.horizontal,
-          { -- Left widgets
-             wibox.container.background(
-                wibox.container.margin( wibox.widget {mylauncher,
-                                                      layout = wibox.layout.align.horizontal},
-                                        0,4), "#000000"),
-             layout = wibox.layout.fixed.horizontal,
-             --spr®,
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { s.mytaglist,
-                                         layout = wibox.layout.align.horizontal },
-                                       0, 3), theme.taglist_bg_normal .. "50"),
-             arrow_right(theme.taglist_bg_normal .. "50", "#222222" .. "F0"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { terminal_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), "#222222" .. "F0"),
-             arrow_right("#222222" .. "F0", "#343434" .. "F0"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { firefox_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), "#343434" .. "F0"),
-             arrow_right("#343434" .. "F0", "#777E76" .. "B0"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { emacs_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), "#777E76" .. "B0"),
-             arrow_right("#777E76" .. "B0", "#222222" .. "F0"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { gimp_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), "#222222" .. "F0"),
-             arrow_right("#222222" .. "F0", "#343434" .. "F0"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { darktable_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), "#343434" .. "F0"),
-             arrow_right("#343434" .. "F0", "#777E76" .. "B0"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { audacious_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), "#777E76" .. "B0"),
-             arrow_right("#777E76" .. "B0", "alpha"),
-             s.mypromptbox,
-             spr,
-          },
-          s.mytasklist, -- Middle widget
-          { -- Right widgets
-             layout = wibox.layout.fixed.horizontal,
-             wibox.widget.systray(),
-             -- using separators
-             arrow("alpha", "#CB755B"),
-             wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, 3, 4), "#CB755B"),
-             arrow("#CB755B", "#4B3B51"),
-             wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 2, 3), "#4B3B51"),
-             arrow("#4B3B51", "#8DAA9A"),
-             wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
-             arrow("#8DAA9A", "#777E76"),
-             wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
-             --]]
-             s.mylayoutbox,
-          },
-       }
-    else
-       s.mywibox:setup {
-          layout = wibox.layout.align.horizontal,
-          { -- Left widgets
-             wibox.container.background(
-                wibox.container.margin( wibox.widget {mylauncher,
-                                                      layout = wibox.layout.align.horizontal},
-                                        0,4), "#000000"),
-             layout = wibox.layout.fixed.horizontal,
-             --spr®,
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { s.mytaglist,
-                                         layout = wibox.layout.align.horizontal },
-                                       0, 3), theme.taglist_bg_normal .. "50"),
-             arrow_right(theme.taglist_bg_normal .. "50", theme.mybuttons_bg .. "90"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { terminal_button,
-                                         firefox_button,
-                                         emacs_button,
-                                         gimp_button,
-                                         darktable_button,
-                                         audacious_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       5, 3), theme.mybuttons_bg .. "90"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { thunar_button,
-                                         gimp_button,
-                                         darktable_button,
-                                         audacious_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       0, 3), theme.mybuttons_bg .. "90"),
-             wibox.container.background(
-                wibox.container.margin(wibox.widget
-                                       { audacious_button,
-                                         layout = wibox.layout.align.horizontal },
-                                       0, 3), theme.mybuttons_bg .. "90"),
-             arrow_right(theme.mybuttons_bg .. "90", "alpha"),
-             s.mypromptbox,
-             spr,
-          },
-          s.mytasklist, -- Middle widget
-          { -- Right widgets
-             layout = wibox.layout.fixed.horizontal,
-             wibox.widget.systray(),
-             arrow("alpha", "#8DAA9A"),
-             wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
-             arrow("#8DAA9A", "#777E76"),
-             wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
-             s.mylayoutbox,
-          },
-       }
-    end
+    s.mywibox:setup {
+       layout = wibox.layout.align.horizontal,
+       { -- Left widgets
+          wibox.container.background(
+             wibox.container.margin( wibox.widget {mylauncher,
+                                                   layout = wibox.layout.align.horizontal},
+                                     0,4), "#000000"),
+          layout = wibox.layout.fixed.horizontal,
+          --spr®,
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { s.mytaglist,
+                                      layout = wibox.layout.align.horizontal },
+                                    0, 3), theme.taglist_bg_normal .. "50"),
+          arrow_right(theme.taglist_bg_normal .. "50", "#222222" .. "F0"),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { terminal_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    5, 3), "#222222" .. "F0"),
+          arrow_right("#222222" .. "F0", "#343434" .. "F0"),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { firefox_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    5, 3), "#343434" .. "F0"),
+          arrow_right("#343434" .. "F0", "#777E76" .. "B0"),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { emacs_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    5, 3), "#777E76" .. "B0"),
+          arrow_right("#777E76" .. "B0", "#222222" .. "F0"),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { gimp_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    5, 3), "#222222" .. "F0"),
+          arrow_right("#222222" .. "F0", "#343434" .. "F0"),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { darktable_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    5, 3), "#343434" .. "F0"),
+          arrow_right("#343434" .. "F0", "#777E76" .. "B0"),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { audacious_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    5, 3), "#777E76" .. "B0"),
+          arrow_right("#777E76" .. "B0", "alpha"),
+          s.mypromptbox,
+          spr,
+       },
+       s.mytasklist, -- Middle widget
+       right_widgets,
+    }
 end
 
 return theme
