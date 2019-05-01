@@ -462,7 +462,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags,
                                          awful.util.tasklist_buttons,
                                          { bg_focus = theme.tasklist_bg_focus .. "85",
-                                           shape = gears.shape.powerline,
+                                           shape = gears.shape.rectangle,
                                            shape_border_width = 1,
                                            shape_border_color = "#A0A0A0" .. "90",
                                            align = "center" })
