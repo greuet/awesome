@@ -580,6 +580,10 @@ function theme.at_screen_connect(s)
           { -- Right widgets
              layout = wibox.layout.fixed.horizontal,
              wibox.widget.systray(),
+             arrow("alpha", "#8DAA9A"),
+             wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
+             arrow("#8DAA9A", "#777E76"),
+             wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76"),
              s.mylayoutbox,
           },
        }
