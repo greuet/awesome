@@ -397,7 +397,7 @@ function theme.at_screen_connect(s)
 
     -- Tags
     local names = { "  ", "  ", "  ", " ✎ ", " ♫ ",
-                    "  ", " [+] "}
+                    "  ", "[+]"}
     local l = awful.layout.suit  -- Just to save some typing: use an alias.
 
     local layouts = { l.tile, l.tile, l.tile, l.floating, l.tile, l.floating,
