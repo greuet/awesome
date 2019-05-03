@@ -45,6 +45,8 @@ theme.cpu_bg                                    = "#f19959" .. "B0"
 theme.mem_bg                                    = "#e46165" .. "B0"
 theme.vol_bg                                    = "#5b3e73" .. "B0"
 theme.textclock_bg                              = "#83aa90" .. "B0"
+theme.vol_screen2_bg                            = theme.cpu_bg
+theme.textclock_screen2_bg                      = theme.mem_bg
 theme.launchbar_term_bg                         = "#163142" .. "A0"
 theme.launchbar_ff_bg                           = "#1a3a4f" .. "F0"
 theme.launchbar_thunar_bg                       = "#1e445c" .. "F0"
@@ -465,15 +467,16 @@ function theme.at_screen_connect(s)
        right_widgets = {
           layout = wibox.layout.fixed.horizontal,
           -- using separators
-          arrow("alpha", theme.vol_bg),
+          arrow("alpha", theme.vol_screen2_bg),
           wibox.container.background(
              wibox.container.margin(
                 wibox.widget {
                    volicon, volumewidget, layout = wibox.layout.align.horizontal
-                }, 3, 3), theme.vol_bg),
-          arrow(theme.vol_bg, theme.textclock_bg),
+                }, 3, 3), theme.vol_screen2_bg),
+          arrow(theme.vol_screen2_bg, theme.textclock_screen2_bg),
           wibox.container.background(
-             wibox.container.margin(mytextclock, 4, 0), theme.textclock_bg),
+             wibox.container.margin(
+                mytextclock, 4, 0), theme.textclock_screen2_bg),
           --]]
           wibox.widget.systray(),
           s.mylayoutbox
