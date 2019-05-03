@@ -65,28 +65,10 @@ theme.layout_max                                = theme.dir .. "/icons/max.png"
 theme.layout_fullscreen                         = theme.dir .. "/icons/fullscreen.png"
 theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
-theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
-theme.widget_battery                            = theme.dir .. "/icons/battery.png"
-theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"
-theme.widget_battery_empty                      = theme.dir .. "/icons/battery_empty.png"
-theme.widget_mem                                = theme.dir .. "/icons/mem.png"
-theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
-theme.widget_temp                               = theme.dir .. "/icons/temp.png"
-theme.widget_net                                = theme.dir .. "/icons/net.png"
-theme.widget_hdd                                = theme.dir .. "/icons/hdd.png"
-theme.widget_music                              = theme.dir .. "/icons/note.png"
-theme.widget_music_on                           = theme.dir .. "/icons/note_on.png"
-theme.widget_music_pause                        = theme.dir .. "/icons/pause.png"
-theme.widget_music_stop                         = theme.dir .. "/icons/stop.png"
 theme.widget_vol                                = theme.dir .. "/icons/vol.png"
 theme.widget_vol_low                            = theme.dir .. "/icons/vol_low.png"
 theme.widget_vol_no                             = theme.dir .. "/icons/vol_no.png"
 theme.widget_vol_mute                           = theme.dir .. "/icons/vol_mute.png"
-theme.widget_mail                               = theme.dir .. "/icons/mail.png"
-theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
-theme.widget_task                               = theme.dir .. "/icons/task.png"
-theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
 theme.useless_gap                               = 2
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
@@ -151,35 +133,6 @@ theme.cal = calendar({})
 --         bg   = theme.bg_normal
 --     }
 -- })
-
--- Taskwarrior
-local task = wibox.widget.imagebox(theme.widget_task)
-lain.widget.contrib.task.attach(task, {
-    -- do not colorize output
-    show_cmd = "task | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
-})
-task:buttons(my_table.join(awful.button({}, 1, lain.widget.contrib.task.prompt)))
-
--- Mail IMAP check
-local mailicon = wibox.widget.imagebox(theme.widget_mail)
---[[ commented because it needs to be set before use
-mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
-local mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        if mailcount > 0 then
-            widget:set_text(" " .. mailcount .. " ")
-            mailicon:set_image(theme.widget_mail_on)
-        else
-            widget:set_text("")
-            mailicon:set_image(theme.widget_mail)
-        end
-    end
-})
---]]
 
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(theme.widget_vol)
@@ -362,33 +315,9 @@ thunar_button:buttons(awful.util.table.join(
 ))
 
 
-
 -- Separators
 local arrow = separators.arrow_left
 local arrow_right = separators.arrow_right
-
-function theme.powerline_rl(cr, width, height)
-    local arrow_depth, offset = height/2, 0
-
-    -- Avoid going out of the (potential) clip area
-    if arrow_depth < 0 then
-        width  =  width + 2*arrow_depth
-        offset = -arrow_depth
-    end
-
-    cr:move_to(offset + arrow_depth         , 0        )
-    cr:line_to(offset + width               , 0        )
-    cr:line_to(offset + width - arrow_depth , height/2 )
-    cr:line_to(offset + width               , height   )
-    cr:line_to(offset + arrow_depth         , height   )
-    cr:line_to(offset                       , height/2 )
-
-    cr:close_path()
-end
-
-local function pl(widget, bgcolor, padding)
-    return wibox.container.background(wibox.container.margin(widget, 16, 16), bgcolor, theme.powerline_rl)
-end
 
 function theme.at_screen_connect(s)
     -- Quake application
