@@ -27,7 +27,7 @@ theme.bg_urgent                                 = "#3F3F3F"
 theme.taglist_fg_normal                         = "#FFFFFF"
 theme.taglist_fg_focus                          = "#FFFFFF"
 theme.taglist_bg_focus                          = "#CE5666"
-theme.taglist_bg_normal                         = "#CE5666"
+theme.taglist_bg_normal                         = "#001010" .. "A0"
 theme.tasklist_bg_focus                         = "#4b696d"
 theme.tasklist_fg_focus                         = "#FFFFFF"
 theme.tasklist_bg_normal                        = "#222222"
@@ -41,6 +41,10 @@ theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
 theme.menu_bg_normal                            = "#222222"
 theme.menu_bg_focus                             = "#ce5666"
+theme.cpu_bg                                    = "#f19959" .. "B0"
+theme.mem_bg                                    = "#e46165" .. "B0"
+theme.vol_bg                                    = "#5b3e73" .. "B0"
+theme.textclock_bg                              = "#83aa90" .. "B0"
 theme.menu_height                               = 24
 theme.menu_width                                = 200
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
@@ -424,14 +428,28 @@ function theme.at_screen_connect(s)
        right_widgets = {
           layout = wibox.layout.fixed.horizontal,
           -- using separators
-          arrow("alpha", "#CB755B" .. "B0"),
-          wibox.container.background(wibox.container.margin(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, 3, 4), "#CB755B" .. "B0"),
-          arrow("#CB755B" .. "B0", "#4B3B51" .. "B0"),
-          wibox.container.background(wibox.container.margin(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, 2, 3), "#4B3B51" .. "B0"),
-          arrow("#4B3B51" .. "B0", "#8DAA9A" .. "B0"),
-          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A" .. "B0"),
-          arrow("#8DAA9A" .. "B0", "#777E76" .. "B0"),
-          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76" .. "B0"),
+          arrow("alpha", theme.cpu_bg),
+          wibox.container.background(
+             wibox.container.margin(
+                wibox.widget {
+                   cpuicon, cpu.widget, layout = wibox.layout.align.horizontal
+                }, 3, 4), theme.cpu_bg),
+          arrow(theme.cpu_bg, theme.mem_bg),
+          wibox.container.background(
+             wibox.container.margin(
+                wibox.widget {
+                   memicon, mem.widget, layout = wibox.layout.align.horizontal
+                }, 2, 3), theme.mem_bg),
+          arrow(theme.mem_bg, theme.vol_bg),
+          wibox.container.background
+          (wibox.container.margin(
+              wibox.widget
+              { volicon, volumewidget, layout = wibox.layout.align.horizontal
+              }, 3, 3), theme.vol_bg),
+          arrow(theme.vol_bg, theme.textclock_bg),
+          wibox.container.background(
+             wibox.container.margin(
+                mytextclock, 4, 0), theme.textclock_bg),
           --]],
           wibox.widget.systray(),
           s.mylayoutbox
@@ -440,10 +458,15 @@ function theme.at_screen_connect(s)
        right_widgets = {
           layout = wibox.layout.fixed.horizontal,
           -- using separators
-          arrow("alpha", "#8DAA9A" .. "B0"),
-          wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A" .. "B0"),
-          arrow("#8DAA9A" .. "B0", "#777E76" .. "B0"),
-          wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#777E76" .. "B0"),
+          arrow("alpha", theme.vol_bg),
+          wibox.container.background(
+             wibox.container.margin(
+                wibox.widget {
+                   volicon, volumewidget, layout = wibox.layout.align.horizontal
+                }, 3, 3), theme.vol_bg),
+          arrow(theme.vol_bg, theme.textclock_bg),
+          wibox.container.background(
+             wibox.container.margin(mytextclock, 4, 0), theme.textclock_bg),
           --]]
           wibox.widget.systray(),
           s.mylayoutbox
