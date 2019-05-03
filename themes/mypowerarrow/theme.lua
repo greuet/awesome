@@ -14,7 +14,7 @@ local os, math, string = os, math, string
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. 
+theme.dir                                       = os.getenv("HOME") ..
    "/.config/awesome/themes/mypowerarrow"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 theme.font                                      = "DejaVu Sans Condensed 10"
@@ -27,7 +27,7 @@ theme.bg_urgent                                 = "#3F3F3F"
 theme.taglist_fg_normal                         = "#FFFFFF"
 theme.taglist_fg_focus                          = "#FFFFFF"
 theme.taglist_bg_focus                          = "#CE5666"
-theme.taglist_bg_normal                         = "#CE5666"
+theme.taglist_bg_normal                         = "#001010" .. "A0"
 theme.tasklist_bg_focus                         = "#4b696d"
 theme.tasklist_fg_focus                         = "#FFFFFF"
 theme.tasklist_bg_normal                        = "#222222"
@@ -39,9 +39,14 @@ theme.border_marked                             = "#CC9393"
 theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
-theme.mybuttons_bg                              = "#FFAF5F"
 theme.menu_bg_normal                            = "#222222"
 theme.menu_bg_focus                             = "#ce5666"
+theme.vol_bg                                    = "#f19959" .. "B0"
+theme.textclock_bg                              = "#e46165" .. "B0"
+theme.launchbar_term_bg                         = "#234d69" .. "F0"
+theme.launchbar_ff_bg                           = "#275776" .. "F0"
+theme.launchbar_thunar_bg                       = "#2a5e80" .. "F0"
+theme.launchbar_emacs_bg                        = "#2e668b" .. "F0"
 theme.menu_height                               = 24
 theme.menu_width                                = 200
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
@@ -412,6 +417,27 @@ function theme.at_screen_connect(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+
+    local right_widgets = {
+       layout = wibox.layout.fixed.horizontal,
+       -- using separators
+       arrow("alpha", theme.vol_bg),
+       wibox.container.background
+       (wibox.container.margin(
+           wibox.widget
+           { volicon, volumewidget, layout = wibox.layout.align.horizontal
+           }, 3, 3), theme.vol_bg),
+       arrow(theme.vol_bg, theme.textclock_bg),
+       wibox.container.background(
+          wibox.container.margin(
+             mytextclock, 4, 0), theme.textclock_bg),
+       --]],
+       wibox.widget.systray(),
+       s.mylayoutbox
+    }
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all,
                                        awful.util.taglist_buttons)
@@ -434,69 +460,55 @@ function theme.at_screen_connect(s)
     s.mytasklist.tasklist_fg_focus = theme.tasklist_fg_focus .. "100"
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 20, 
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 20,
                               bg = theme.bg_normal .. "60", fg = theme.fg_normal .. "99"})
 
     -- Add widgets to the wibox
     s.mywibox:setup {
-        layout = wibox.layout.align.horizontal,
-        { -- Left widgets
-           wibox.container.background(
-              wibox.container.margin( wibox.widget {mylauncher,
-                                                   layout = wibox.layout.align.horizontal}, 
-                                      0,4), "#000000"),
-           layout = wibox.layout.fixed.horizontal,
-            --spr®,
-            wibox.container.background(
-               wibox.container.margin(wibox.widget 
-                                      { s.mytaglist,
-                                        layout = wibox.layout.align.horizontal },
-                                      0, 3), theme.taglist_bg_normal .. "50"),
-            arrow_right(theme.taglist_bg_normal .. "50", theme.mybuttons_bg .. "90"),
-            wibox.container.background(
-               wibox.container.margin(wibox.widget 
-                                      { terminal_button,
-                                        firefox_button,
-                                        emacs_button,
-                                        audacious_button,
-                                        layout = wibox.layout.align.horizontal },
-                                      5, 3), theme.mybuttons_bg .. "90"),
-            wibox.container.background(
-               wibox.container.margin(wibox.widget 
-                                      { thunar_button,
-                                        audacious_button,
-                                        layout = wibox.layout.align.horizontal },
-                                      0, 3), theme.mybuttons_bg .. "90"),
-            arrow_right(theme.mybuttons_bg .. "90", "alpha"),
-            s.mypromptbox,
-            spr,
-        },
-        s.mytasklist, -- Middle widget
-        { -- Right widgets
-            layout = wibox.layout.fixed.horizontal,
-            --[[ using shapes
-            pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
-            pl(task, "#343434"),
-            --pl(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, "#343434"),
-            pl(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, "#777E76"),
-            pl(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, "#4B696D"),
-            pl(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, "#4B3B51"),
-            pl(wibox.widget { fsicon, theme.fs.widget, layout = wibox.layout.align.horizontal }, "#CB755B"),
-            pl(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, "#8DAA9A"),
-            pl(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, "#C0C0A2"),
-            pl(binclock.widget, "#777E76"),
-            --]]
-            -- using separators
-            arrow("alpha", "#8DAA9A"),
-            -- arrow("#CB755B", "#8DAA9A"),
-            wibox.container.background(wibox.container.margin(wibox.widget { volicon, volumewidget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
-            arrow("#8DAA9A", "#493a4f"),
-            wibox.container.background(wibox.container.margin(mytextclock, 4, 0), "#493a4f"),
-            arrow("#493a4f", "#222222"),
-            --]]
-            wibox.widget.systray(),
-            s.mylayoutbox,
-        },
+       layout = wibox.layout.align.horizontal,
+       { -- Left widgets
+          wibox.container.background(
+             wibox.container.margin( wibox.widget {mylauncher,
+                                                   layout = wibox.layout.align.horizontal},
+                                     0,4), "#000000"),
+          layout = wibox.layout.fixed.horizontal,
+          --spr,
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { s.mytaglist,
+                                      layout = wibox.layout.align.horizontal },
+                                    0, 0), theme.taglist_bg_normal),
+          arrow_right(theme.taglist_bg_normal, theme.launchbar_term_bg),
+          arrow_right(theme.launchbar_term_bg, theme.launchbar_term_bg),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { terminal_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    2, 1), theme.launchbar_term_bg),
+          arrow_right(theme.launchbar_term_bg, theme.launchbar_ff_bg),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { firefox_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    2, 1), theme.launchbar_ff_bg),
+          arrow_right(theme.launchbar_ff_bg, theme.launchbar_thunar_bg),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { thunar_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    2, 1), theme.launchbar_thunar_bg),
+          arrow_right(theme.launchbar_thunar_bg, theme.launchbar_emacs_bg),
+          wibox.container.background(
+             wibox.container.margin(wibox.widget
+                                    { emacs_button,
+                                      layout = wibox.layout.align.horizontal },
+                                    2, 1), theme.launchbar_emacs_bg),
+          arrow_right(theme.launchbar_emacs_bg, "alpha"),
+          s.mypromptbox,
+          spr,
+       },
+       s.mytasklist, -- Middle widget
+       right_widgets,
     }
 end
 
