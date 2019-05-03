@@ -491,50 +491,51 @@ function theme.at_screen_connect(s)
              wibox.container.margin(wibox.widget
                                     { s.mytaglist,
                                       layout = wibox.layout.align.horizontal },
-                                    0, 0), theme.taglist_bg_normal .. "50"),
-          arrow_right(theme.taglist_bg_normal .. "50", "#404040" .. "F0"),
+                                    0, 0), "#001010" .. "A0"),
+          arrow_right("#001010" .. "A0", "#163142" .. "A0"),
+          arrow_right("#163142" .. "A0", "#163142" .. "A0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { terminal_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#404040" .. "F0"),
-          arrow_right("#404040" .. "F0", "#505050" .. "F0"),
+                                    2, 1), "#163142" .. "F0"),
+          arrow_right("#163142" .. "F0", "#1a3a4f" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { firefox_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#505050" .. "F0"),
-          arrow_right("#505050" .. "F0", "#606060" .. "F0"),
+                                    2, 1), "#1a3a4f" .. "F0"),
+          arrow_right("#1a3a4f" .. "F0", "#1e445c" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { thunar_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#606060" .. "F0"),
-          arrow_right("#606060" .. "F0", "#707070" .. "F0"),
+                                    2, 1), "#1e445c" .. "F0"),
+          arrow_right("#1e445c" .. "F0", "#234d69" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { emacs_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#707070" .. "F0"),
-          arrow_right("#707070" .. "F0", "#808080" .. "F0"),
+                                    2, 1), "#234d69" .. "F0"),
+          arrow_right("#234d69" .. "F0", "#275776" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { gimp_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#808080" .. "F0"),
-          arrow_right("#808080" .. "F0", "#909090" .. "F0"),
+                                    2, 1), "#275776" .. "F0"),
+          arrow_right("#275776" .. "F0", "#2a5e80" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { darktable_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#909090" .. "F0"),
-          arrow_right("#909090" .. "F0", "#A0A0A0" .. "F0"),
+                                    2, 1), "#2a5e80" .. "F0"),
+          arrow_right("#2a5e80" .. "F0", "#2e668b" .. "F0"),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { audacious_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#A0A0A0" .. "F0"),
-          arrow_right("#A0A0A0" .. "F0", "alpha"),
+                                    2, 1), "#2e668b" .. "F0"),
+          arrow_right("#2e668b" .. "F0", "alpha"),
           s.mypromptbox,
           spr,
        },
