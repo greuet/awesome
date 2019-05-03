@@ -110,7 +110,7 @@ mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:togg
 local markup = lain.util.markup
 local separators = lain.util.separators
 
-local mytextclock = wibox.widget.textclock('<span color="#dfd2e3" font="Terminus 10"> %d/%m | %Hh%M </span>')
+local mytextclock = wibox.widget.textclock('<span color="#ffffff" font="DejaVu Sans Condensed 10"> %d/%m | %Hh%M </span>')
 
 -- Calendar
 -- load the widget code
