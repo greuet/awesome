@@ -17,7 +17,7 @@ local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. 
    "/.config/awesome/themes/mypowerarrow"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
-theme.font                                      = "Terminus 10"
+theme.font                                      = "DejaVu Sans Condensed 10"
 theme.fg_normal                                 = "#FFFFFF"
 theme.fg_focus                                  = "#FFFFFF"
 theme.fg_urgent                                 = "#C83F11"
