@@ -97,11 +97,8 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 
 
 -- Application icons
-theme.audacious                                 = theme.dir .. "/icons/apps/audacious.svg"
-theme.darktable                                 = theme.dir .. "/icons/apps/darktable.svg"
 theme.emacs                                     = theme.dir .. "/icons/apps/emacs.svg"
 theme.firefox                                   = theme.dir .. "/icons/apps/firefox.svg"
-theme.gimp                                      = theme.dir .. "/icons/apps/gimp.svg"
 theme.terminal                                  = theme.dir .. "/icons/apps/terminal.svg"
 theme.thunar                                    = theme.dir .. "/icons/apps/thunar.svg"
 
@@ -167,141 +164,15 @@ local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.s
 local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
 
 
--- MPD
-local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
-local mpdicon = wibox.widget.imagebox(theme.widget_music)
-mpdicon:buttons(my_table.join(
-    awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
-    awful.button({ }, 1, function ()
-        awful.spawn.with_shell("mpc prev")
-        theme.mpd.update()
-    end),
-    awful.button({ }, 2, function ()
-        awful.spawn.with_shell("mpc toggle")
-        theme.mpd.update()
-    end),
-    awful.button({ }, 3, function ()
-        awful.spawn.with_shell("mpc next")
-        theme.mpd.update()
-    end)))
-theme.mpd = lain.widget.mpd({
-    settings = function()
-        if mpd_now.state == "play" then
-            artist = " " .. mpd_now.artist .. " "
-            title  = mpd_now.title  .. " "
-            mpdicon:set_image(theme.widget_music_on)
-            widget:set_markup(markup.font(theme.font, markup("#FF8466", artist) .. " " .. title))
-        elseif mpd_now.state == "pause" then
-            widget:set_markup(markup.font(theme.font, " mpd paused "))
-            mpdicon:set_image(theme.widget_music_pause)
-        else
-            widget:set_text("")
-            mpdicon:set_image(theme.widget_music)
-        end
-    end
-})
-
--- MEM
-local memicon = wibox.widget.imagebox(theme.widget_mem)
-local mem = lain.widget.mem({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
-    end
-})
-
--- CPU
-local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widget.cpu({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
-    end
-})
-
---[[ Coretemp (lm_sensors, per core)
-local tempwidget = awful.widget.watch({awful.util.shell, '-c', 'sensors | grep Core'}, 30,
-function(widget, stdout)
-    local temps = ""
-    for line in stdout:gmatch("[^\r\n]+") do
-        temps = temps .. line:match("+(%d+).*°C")  .. "° " -- in Celsius
-    end
-    widget:set_markup(markup.font(theme.font, " " .. temps))
-end)
---]]
--- Coretemp (lain, average)
-local temp = lain.widget.temp({
-    settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
-    end
-})
---]]
-local tempicon = wibox.widget.imagebox(theme.widget_temp)
-
--- / fs
-local fsicon = wibox.widget.imagebox(theme.widget_hdd)
-theme.fs = lain.widget.fs({
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Terminus 10" },
-    settings = function()
-        local fsp = string.format(" %3.2f %s ", fs_now["/"].free, fs_now["/"].units)
-        widget:set_markup(markup.font(theme.font, fsp))
-    end
-})
-
--- Battery
-local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat = lain.widget.bat({
-    settings = function()
-        if bat_now.status ~= "N/A" then
-            if bat_now.ac_status == 1 then
-                widget:set_markup(markup.font(theme.font, " AC "))
-                baticon:set_image(theme.widget_ac)
-                return
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
-                baticon:set_image(theme.widget_battery_empty)
-            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
-                baticon:set_image(theme.widget_battery_low)
-            else
-                baticon:set_image(theme.widget_battery)
-            end
-            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
-        else
-            widget:set_markup()
-            baticon:set_image(theme.widget_ac)
-        end
-    end
-})
-
--- Net
-local neticon = wibox.widget.imagebox(theme.widget_net)
-local net = lain.widget.net({
-    settings = function()
-        widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
-    end
-})
-
 -- Application buttons
 local firefox_button = awful.widget.button({ image = theme.firefox })
 firefox_button:buttons(awful.util.table.join(
   awful.button({ }, 1, function () awful.util.spawn("firefox") end)
 ))
 
-local audacious_button = awful.widget.button({ image = theme.audacious })
-audacious_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("audacious") end)
-))
-
-local darktable_button = awful.widget.button({ image = theme.darktable })
-darktable_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("darktable") end)
-))
-
 local emacs_button = awful.widget.button({ image = theme.emacs })
 emacs_button:buttons(awful.util.table.join(
   awful.button({ }, 1, function () awful.util.spawn("emacs") end)
-))
-
-local gimp_button = awful.widget.button({ image = theme.gimp })
-gimp_button:buttons(awful.util.table.join(
-  awful.button({ }, 1, function () awful.util.spawn("gimp") end)
 ))
 
 local terminal_button = awful.widget.button({ image = theme.terminal })
