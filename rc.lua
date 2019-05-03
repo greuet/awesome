@@ -664,7 +664,7 @@ awful.rules.rules = {
     { rule_any = { class = {"Audacious", "smplayer" } },
       properties = { tag = "🎶", switchtotag = true} },
     -- title bar disabled for these clients
-    { rule_any = { class = {"Emacs", "xfce4-terminal", "Xfce4-terminal", "xterm", "Ulauncher", "ulauncher"} },
+    { rule_any = { class = {"Emacs", "xfce4-terminal", "Xfce4-terminal", "xterm", "Ulauncher", "ulauncher", "Firefox"} },
       properties = { titlebars_enabled = false} },
     { rule_any = { class = {"Ulauncher", "ulauncher"} },
       properties = { floating = true },
