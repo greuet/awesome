@@ -45,6 +45,13 @@ theme.cpu_bg                                    = "#f19959" .. "B0"
 theme.mem_bg                                    = "#e46165" .. "B0"
 theme.vol_bg                                    = "#5b3e73" .. "B0"
 theme.textclock_bg                              = "#83aa90" .. "B0"
+theme.launchbar_term_bg                         = "#163142" .. "A0"
+theme.launchbar_ff_bg                           = "#1a3a4f" .. "F0"
+theme.launchbar_thunar_bg                       = "#1e445c" .. "F0"
+theme.launchbar_emacs_bg                        = "#234d69" .. "F0"
+theme.launchbar_gimp_bg                         = "#275776" .. "F0"
+theme.launchbar_dt_bg                           = "#2a5e80" .. "F0"
+theme.launchbar_audacious_bg                    = "#2e668b" .. "F0"
 theme.menu_height                               = 24
 theme.menu_width                                = 200
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
@@ -514,51 +521,51 @@ function theme.at_screen_connect(s)
              wibox.container.margin(wibox.widget
                                     { s.mytaglist,
                                       layout = wibox.layout.align.horizontal },
-                                    0, 0), "#001010" .. "A0"),
-          arrow_right("#001010" .. "A0", "#163142" .. "A0"),
-          arrow_right("#163142" .. "A0", "#163142" .. "A0"),
+                                    0, 0), theme.taglist_bg_normal),
+          arrow_right(theme.taglist_bg_normal, theme.launchbar_term_bg),
+          arrow_right(theme.launchbar_term_bg, theme.launchbar_term_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { terminal_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#163142" .. "F0"),
-          arrow_right("#163142" .. "F0", "#1a3a4f" .. "F0"),
+                                    2, 1), theme.launchbar_term_bg),
+          arrow_right(theme.launchbar_term_bg, theme.launchbar_ff_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { firefox_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#1a3a4f" .. "F0"),
-          arrow_right("#1a3a4f" .. "F0", "#1e445c" .. "F0"),
+                                    2, 1), theme.launchbar_ff_bg),
+          arrow_right(theme.launchbar_ff_bg, theme.launchbar_thunar_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { thunar_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#1e445c" .. "F0"),
-          arrow_right("#1e445c" .. "F0", "#234d69" .. "F0"),
+                                    2, 1), theme.launchbar_thunar_bg),
+          arrow_right(theme.launchbar_thunar_bg, theme.launchbar_emacs_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { emacs_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#234d69" .. "F0"),
-          arrow_right("#234d69" .. "F0", "#275776" .. "F0"),
+                                    2, 1), theme.launchbar_emacs_bg),
+          arrow_right(theme.launchbar_emacs_bg, theme.launchbar_gimp_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { gimp_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#275776" .. "F0"),
-          arrow_right("#275776" .. "F0", "#2a5e80" .. "F0"),
+                                    2, 1), theme.launchbar_gimp_bg),
+          arrow_right(theme.launchbar_gimp_bg, theme.launchbar_dt_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { darktable_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#2a5e80" .. "F0"),
-          arrow_right("#2a5e80" .. "F0", "#2e668b" .. "F0"),
+                                    2, 1), theme.launchbar_dt_bg),
+          arrow_right(theme.launchbar_dt_bg, theme.launchbar_audacious_bg),
           wibox.container.background(
              wibox.container.margin(wibox.widget
                                     { audacious_button,
                                       layout = wibox.layout.align.horizontal },
-                                    2, 1), "#2e668b" .. "F0"),
-          arrow_right("#2e668b" .. "F0", "alpha"),
+                                    2, 1), theme.launchbar_audacious_bg),
+          arrow_right(theme.launchbar_audacious_bg, "alpha"),
           s.mypromptbox,
           spr,
        },
